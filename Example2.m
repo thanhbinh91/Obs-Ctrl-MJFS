@@ -57,14 +57,10 @@ for k = 1:N-1
     Athh  =  th1h(k)*A(:,:,g,1)  +  th2h(k)*A(:,:,g,2);
     Bthh  =  th1h(k)*B(:,:,g,1)  +  th2h(k)*B(:,:,g,2);
     Cthh  =  th1h(k)*C(:,:,g,1)  +  th2h(k)*C(:,:,g,2);
-    
         
-    
     Fthh  =  inv(th1h(k)*S(:,:,g,1) + th2h(k)*S(:,:,g,2))*(th1h(k)*F_(:,:,g,1) + th2h(k)*F_(:,:,g,2));
     Lthh  =  inv(th1h(k)*Z(:,:,g,1) + th2h(k)*Z(:,:,g,2))*(th1h(k)*L_(:,:,g,1) + th2h(k)*L_(:,:,g,2));
-    
-   
-    
+     
     u(k)  =  Fthh*xh(:,k);
     %% Observer
     y(:,k)    = Cth*x(:,k)   + Dth*wk;
@@ -132,7 +128,3 @@ grid on
 
 
 end
-
-
-
-
