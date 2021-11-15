@@ -25,8 +25,7 @@ U  = zeros(s,r,r);
 
 Q1 = zeros(1,s);
 Q2 = zeros(1,s);
-T1 = zeros(s,s);
-T2 = zeros(s,s);
+T = zeros(s,s);
 
 
 
@@ -37,8 +36,7 @@ for g = 1:s
 
     for hh = 1:s
         if hh~= g
-            T1(g,hh) = lmivar(2, [nx,  nx]);
-            T2(g,hh) = lmivar(2, [nx,  nx]);
+            T(g,hh) = lmivar(2, [2*nx,  2*nx]);
         end
     end
 
@@ -243,8 +241,7 @@ end
         end
 
         for h = setdiff(Hb{g},g,'legacy')
-            lmiterm([nlmis  1  1  T1(g,h)],    e1'*Up_Pi(g,h)*Lo_Pi(g,h), e1*co,'s');
-            lmiterm([nlmis  1  1  T2(g,h)],    e2'*Up_Pi(g,h)*Lo_Pi(g,h), e2*co,'s');
+            lmiterm([nlmis  1  1  T(g,h)],   Up_Pi(g,h)*Lo_Pi(g,h), co,'s');
         end
         
         row = 0;
@@ -261,11 +258,8 @@ end
             lmiterm([nlmis  1+row  1 -P3(g,i,j)],  -e1',            e2*co);
 
 
-            lmiterm([nlmis  1+row  1  T1(g,h)],    -e1'*(Up_Pi(g,h)+Lo_Pi(g,h)),  e1*co);
-            lmiterm([nlmis  1+row  1  T2(g,h)],    -e2'*(Up_Pi(g,h)+Lo_Pi(g,h)),  e2*co);
-
-            lmiterm([nlmis  1+row  1+row  T1(g,h)], e1',            e1*co,'s');
-            lmiterm([nlmis  1+row  1+row  T2(g,h)], e2',            e2*co,'s');
+            lmiterm([nlmis  1+row  1      T(g,h)], -Up_Pi(g,h)-Lo_Pi(g,h),  co);
+            lmiterm([nlmis  1+row  1+row  T(g,h)], 1,                      co,'s');
         end
     end
 
