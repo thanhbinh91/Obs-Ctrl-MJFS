@@ -98,21 +98,8 @@ clf(figure(14)); axes('Position',[0.1 0.1 0.85 0.85]);
 stairs(0:N-1,u,'linewidth',linewidth);
 legend('$u(k)$','fontsize',fontsize,'interpreter','latex');
 set(gca,'fontsize',fontsize);
-% axis([0 N-1 -0.8 1.1]);
 grid on;
 
-% clf(figure(7));
-% stairs(0:N-1,th1-th1h,'linewidth',linewidth);
-% set(gca,'fontsize',fontsize);
-% legend('$|\theta_i(k) - \hat\theta_i(k)|$','fontsize',fontsize,'interpreter','latex');
-% 
-% clf(figure(5)); axes('Position',[0.1 0.1 0.85 0.85]);
-% stairs(0:N-1,Hinf,'linewidth',linewidth);
-% set(gca,'fontsize',fontsize);
-% axis([0 N-1 0 1]);
-% legend('$\frac{\sum_{k=0}^{T}\Vert z_k \Vert_2^2}{\gamma_{min}^2 \sum_{k=0}^{T}\Vert w_k \Vert_2^2}$'...
-%     ,'fontsize',fontsize+2,'interpreter','latex','location','best');
-% grid on;
 
 end
 
